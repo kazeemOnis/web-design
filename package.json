@@ -1,0 +1,19 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "Full stack web dev practice",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kazeemOnis/web-design.git"
+  },
+  "author": "Kazeem Onisarotu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kazeemOnis/web-design/issues"
+  },
+  "homepage": "https://github.com/kazeemOnis/web-design#readme"
+}
