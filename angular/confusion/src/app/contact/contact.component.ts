@@ -12,7 +12,7 @@ export class ContactComponent implements OnInit {
   feedback: Feedback;
   contactType = ContactType;
   constructor(private fb: FormBuilder) {
-  	this.createForm();
+	this.createForm();
   }
 
   ngOnInit() {
@@ -20,18 +20,26 @@ export class ContactComponent implements OnInit {
 
   createForm(){
   	this.feedbackForm = this.fb.group({
-  		firstname: '',
-  		lastname: '',
-		telnum: 0,
-		email: '',
-		agree: false,
-		contacttype: 'None',
-		message: ''
+  		firstname: ['',Validators.required],
+  		lastname: ['',Validators.required],
+		  telnum: [0,Validators.required],
+		  email: ['',Validators.required],
+		  agree: false,
+		  contacttype: 'None',
+		  message: ''
   	});
   }
   onSubmit(){
   	this.feedback = this.feedbackForm.value;
   	console.log(this.feedback);
-  	this.feedbackForm.reset();
+  	this.feedbackForm.reset({
+      firstname: '',
+      lastname: '',
+      telnum: '0',
+      email: '',
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    });
   }
 }
