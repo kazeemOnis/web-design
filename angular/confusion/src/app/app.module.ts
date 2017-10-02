@@ -16,6 +16,7 @@ import {
   MdSliderModule,MdSnackBarModule,MdSortModule,MdStepperModule,
   MdTableModule,MdTabsModule,MdTooltipModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -29,6 +30,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     HomeComponent,
     AboutComponent,
     ContactComponent,
+    LoginComponent,
     AppComponent
   ],
   imports: [
@@ -76,9 +79,12 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
   	MdTableModule,
 	  MdTabsModule,
 	  MdTooltipModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ DishService, PromotionService, LeaderService ],
+  entryComponents: [ LoginComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
