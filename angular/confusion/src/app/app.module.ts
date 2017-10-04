@@ -17,6 +17,8 @@ import {
   MdTableModule,MdTabsModule,MdTooltipModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restconfig';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -84,7 +86,8 @@ import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 	  MdTooltipModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [ DishService, PromotionService, LeaderService, {provide: 'BaseURL', useValue: baseURL}, ProcessHttpmsgService ],
   entryComponents: [ LoginComponent ],

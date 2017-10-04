@@ -15,12 +15,14 @@ import 'rxjs/add/operator/switchmap';
 })
 export class DishdetailComponent implements OnInit {
   dish:Dish;
+  dishcopy = null;
   dishIds: number[];
   prev : number;
   next : number;
   commentForm: FormGroup;
   date = new Date();
   time:string = this.date.toISOString();
+  errMsg : string;
 
   constructor(private dishservice: DishService, 
     private route: ActivatedRoute,
@@ -49,7 +51,8 @@ export class DishdetailComponent implements OnInit {
   ngOnInit() {
     this.dishservice.getDishIDs().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-    .subscribe(dish => {this.dish=dish; this.setPrevNext(dish.id)});
+    .subscribe(dish => {this.dish=dish; this.dishcopy=dish; this.setPrevNext(dish.id)},
+      errMsg => this.errMsg = <any>errMsg);
   }
 
   setPrevNext(dishId: number){
@@ -79,7 +82,9 @@ export class DishdetailComponent implements OnInit {
   onSubmit(){
     console.log(this.commentForm.value);
     this.commentForm.value.date += this.time;
-    this.dish.comments.push(this.commentForm.value);
+    this.dishcopy.comments.push(this.commentForm.value);
+    this.dishcopy.save()
+      .subscribe(dish =>{this.dish = dish; console.log(this.dish);});
     this.commentForm.reset({
       author: '',
       rating: '5',
