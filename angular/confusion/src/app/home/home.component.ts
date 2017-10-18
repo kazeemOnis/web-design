@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Promotion } from '../shared/promotion';
@@ -8,8 +7,7 @@ import { Leader } from '../shared/leader';
 import { LeaderService } from '../services/leader.service';
 import { flyInOut, expand } from '../animations/app.animation';
 
-
-
+import 'rxjs/add/operator/switchmap';
 
 @Component({
   selector: 'app-home',
@@ -40,9 +38,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   	this.dishservice.getFeaturedDish().subscribe(dish => this.dish = dish,
-    dishErrMsg => this.dishErrMsg = <any>dishErrMsg );
-  	this.promotionservice.getFeaturedPromotion().subscribe(promotion => this.promotion = promotion);
-    this.leaderservice.getFeaturedLeader().subscribe(leader => this.leader = leader);
+    dishErrMsg => this.dishErrMsg = <any>dishErrMsg);
+  	this.promotionservice.getFeaturedPromotion().subscribe(promotion => this.promotion = promotion,
+      promoErrMsg => this.promoErrMsg = <any>promoErrMsg);
+    this.leaderservice.getFeaturedLeader().subscribe(leader => this.leader = leader,
+      leaderErrMsg => this.leaderErrMsg = <any>leaderErrMsg);
   }
 
 }

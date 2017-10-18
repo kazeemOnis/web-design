@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Dish } from '../shared/dish';
+import { Feedback } from '../shared/feedback';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { baseURL } from '../shared/baseurl';
@@ -11,29 +11,14 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+
 @Injectable()
-export class DishService {
+export class FeedbackService {
 
   constructor(private restangular: Restangular, private processHttpMsgService: ProcessHttpmsgService) { }
 
-  getDishes(): Observable<Dish[]>{
-  	return this.restangular.all('dishes').getList();
+ submitFeedback(feedback:Feedback): Observable<Feedback> {
+  	return this.restangular.all('feedback').post(feedback);
   }
-
-  getDish(id:number): Observable<Dish> {
-  	return this.restangular.one('dishes',id).get();
-  } 
-
-  getFeaturedDish(): Observable<Dish> {
-  	return this.restangular.all('dishes').getList({featured:true})
-    .map(dishes => dishes[0]);
-  }
-
-  getDishIDs(): Observable<number[]>{
-    return this.getDishes()
-    .map(dishes => {return dishes.map(dish => dish.id)})
-    .catch(error => {return error});
-  }
-
 
 }

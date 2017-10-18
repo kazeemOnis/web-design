@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut, expand } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 
 
 @Component({
@@ -21,11 +22,12 @@ import { flyInOut, expand } from '../animations/app.animation';
 
 export class ContactComponent implements OnInit {
 
+  feedbackcopy = null;
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private feedbackservice: FeedbackService, @Inject('BaseURL') private BaseURL) {
     this.createForm();
   }
 
@@ -76,10 +78,19 @@ export class ContactComponent implements OnInit {
 
     this.onValueChanged(); // (re)set validation messages now
   }
+   
+   hideFeedback(){
+    setTimeout(()=>{
+      document.getElementById("feed").style.visibility='hidden';
+    },5000)
+  }
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
+    this.feedbackservice.submitFeedback(this.feedback)
+      .subscribe(feedback => {this.feedback = feedback; console.log(feedback)});
     console.log(this.feedback);
+    this.hideFeedback();
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -91,6 +102,7 @@ export class ContactComponent implements OnInit {
     });
   }
 
+ 
   onValueChanged(data?: any) {
     if (!this.feedbackForm) { return; }
     const form = this.feedbackForm;

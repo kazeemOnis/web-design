@@ -1,0 +1,53 @@
+{
+  "name": "queryInterface",
+  "version": "1.0.0",
+  "description": "A system that can query the twitter api",
+  "author": "Karl Eze, Daniel Ayeni, Kazeem Onisarotu",
+  "bin": {
+  "module-name": "./bin/queryInterface"
+},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+      },
+  "main": "queryInterface.html",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/Daniel1karl2kaz/intelligent-web-1"
+},
+  "bugs": {
+  "url": "https://github.com/nodejitsu/browsenpm.org/issues"
+},
+  "keywords": [
+  "sparql-client",
+  "mongodb",
+  "node-flickr"
+  "MongoClient"
+  "twit"
+  "bluebird"
+  "url"
+  "util"
+  "node-static"
+  "http"
+  ],
+  "dependencies": {
+    "sparql-client":"0.2.0",
+    "mongodb":"2.1.19",
+    "node-flickr":"1.0.0",
+    "MongoClient":"",
+    "twit":"2.2.4",
+    "bluebird":"3.4.0",
+    "url":"0.11.0",
+    "util":"0.10.3",
+    "node-static":"0.7.7",
+    "http":"",
+
+  },
+  "devDependencies": {
+    "vows": "^0.7.0",
+    "assume": "<1.0.0 || >=2.3.1 <2.4.5 || >=2.5.2 <3.0.0",
+    "pre-commit": "*"
+  },
+  "preferGlobal": true,
+  "private": true,
+  }

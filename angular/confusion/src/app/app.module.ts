@@ -26,6 +26,7 @@ import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { FeedbackService } from './services/feedback.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -91,7 +92,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     ReactiveFormsModule,
     RestangularModule.forRoot(RestangularConfigFactory)
   ],
-  providers: [ DishService, PromotionService, LeaderService, {provide: 'BaseURL', useValue: baseURL}, ProcessHttpmsgService ],
+  providers: [ DishService, PromotionService, LeaderService, FeedbackService, {provide: 'BaseURL', useValue: baseURL}, ProcessHttpmsgService ],
   entryComponents: [ LoginComponent ],
   bootstrap: [AppComponent]
 })
